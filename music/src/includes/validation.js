@@ -15,6 +15,7 @@ import {
   min_value as minVal,
   not_one_of as excluded,
   required,
+  numeric,
 } from '@vee-validate/rules';
 
 export default {
@@ -34,6 +35,7 @@ export default {
     defineRule('excluded', excluded);
     defineRule('country_excluded', excluded);
     defineRule('tos', required);
+    defineRule('numeric', numeric);
 
     configure({
       generateMessage: ({ rule, field }) => {
@@ -50,6 +52,7 @@ export default {
           excluded: `You are not allowed to use this value for the field ${field}.`,
           country_excluded: 'Due to restrictions, we do not accept users from this location.',
           tos: 'You must accept the Terms of Service.',
+          numeric: `The field ${field} can only contain digits.`,
         };
         return messages[rule.name]
           ? messages[rule.name]

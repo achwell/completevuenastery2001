@@ -24,6 +24,15 @@
                 placeholder="Enter Email" />
       <ErrorMessage class="text-red-600" name="email" />
     </div>
+    <!-- Phone -->
+    <div class="mb-3">
+      <label class="inline-block mb-2">Phone</label>
+      <VeeField type="tel" name="phone"
+                class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
+                  duration-500 focus:outline-none focus:border-black rounded"
+                placeholder="Enter Phone" />
+      <ErrorMessage class="text-red-600" name="phone" />
+    </div>
     <!-- Age -->
     <div class="mb-3">
       <label class="inline-block mb-2">Age</label>
@@ -45,11 +54,11 @@
     <!-- Confirm Password -->
     <div class="mb-3">
       <label class="inline-block mb-2">Confirm Password</label>
-      <VeeField type="password" name="confirm_password"
+      <VeeField type="password" name="confirmPassword"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
                   duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Confirm Password" />
-      <ErrorMessage class="text-red-600" name="confirm_password" />
+      <ErrorMessage class="text-red-600" name="confirmPassword" />
     </div>
     <!-- Country -->
     <div class="mb-3">
@@ -81,7 +90,6 @@
 
 </template>
 <script>
-
 export default {
   name: 'RegisterForm',
   data() {
@@ -96,24 +104,37 @@ export default {
       schema: {
         name: 'required|min:3|max:100|alpha_spaces',
         email: 'required|email',
+        phone: 'numeric|min:8|max:8',
         age: 'required|min_value:18|max_value:100',
-        password: 'required|min:3|max:100',
-        confirm_password: 'password_mismatch:@password',
+        password: 'required|min:6|max:100',
+        confirmPassword: 'password_mismatch:@password',
         country: 'required|country_excluded:Antarctica',
         tos: 'tos',
       },
     };
   },
   methods: {
-    register(values) {
+    async register(values) {
       this.reg_in_submission = true;
       this.reg_show_alert = true;
       this.reg_alert_variant = 'bg-blue-500';
       this.reg_alert_msg = 'Please wait! Your account is being created.';
 
+      try {
+        await this.$store.dispatch('register', values);
+      } catch (e) {
+        console.error(e);
+        this.reg_in_submission = false;
+        this.reg_alert_variant = 'bg-red-500';
+        this.reg_alert_msg = e.message
+          ? e.message
+          : 'An unexpected error occured. Please try again later';
+        return;
+      }
+
       this.reg_alert_variant = 'bg-green-500';
       this.reg_alert_msg = 'Success! Your account has been created.';
-      console.log(values);
+      window.location.reload();
     },
   },
 };
