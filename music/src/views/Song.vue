@@ -86,12 +86,14 @@ export default {
       comment_in_submission: false,
       comment_show_alert: false,
       comment_alert_variant: 'bg-blue-500',
-      comment_alert_message: this.$i18n.t('comment.submittet'),
+      comment_alert_message: this.$i18n.t('comment.being-submittet'),
       sort: '1',
     };
   },
   computed: {
-    ...mapState(['userLoggedIn']),
+    ...mapState({
+      userLoggedIn: (state) => state.auth.userLoggedIn,
+    }),
     ...mapGetters(['playing']),
     sortedComments() {
       return this.comments.slice().sort((a, b) => {
@@ -102,18 +104,22 @@ export default {
       });
     },
   },
-  async created() {
-    const docSnapshot = await songsCollection.doc(this.$route.params.id).get();
-    if (!docSnapshot.exists) {
-      this.$router.push({ name: 'home' });
-      return;
-    }
+  async beforeRouteEnter(to, from, next) {
+    const docSnapshot = await songsCollection.doc(to.params.id).get();
+    next((vm) => {
+      if (!docSnapshot.exists) {
+        vm.$router.push({ name: 'home' });
+        return;
+      }
+      const { sort } = vm.$route.query;
 
-    const { sort } = this.$route.query;
-    this.sort = sort === '1' || sort === '2' ? sort : '1';
+      // eslint-disable-next-line no-param-reassign
+      vm.sort = sort === '1' || sort === '2' ? sort : '1';
 
-    this.song = docSnapshot.data();
-    this.getComments();
+      // eslint-disable-next-line no-param-reassign
+      vm.song = docSnapshot.data();
+      vm.getComments();
+    });
   },
   methods: {
     ...mapActions(['newSong']),
@@ -121,7 +127,7 @@ export default {
       this.comment_in_submission = true;
       this.comment_show_alert = true;
       this.comment_alert_variant = 'bg-blue-500';
-      this.comment_alert_message = this.$i18n.t('comment.submittet');
+      this.comment_alert_message = this.$i18n.t('comment.being-submittet');
       const comment = {
         content: values.comment,
         datePosted: new Date().toString(),

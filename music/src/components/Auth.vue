@@ -66,7 +66,7 @@ export default {
   components: { AppLoginForm, AppRegisterForm },
   computed: {
     ...mapState({
-      modal: 'authModalShow',
+      authModalShow: (state) => state.auth.authModalShow,
     }),
   },
   methods: {
