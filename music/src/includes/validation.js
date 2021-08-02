@@ -17,6 +17,7 @@ import {
   required,
   numeric,
 } from '@vee-validate/rules';
+import { localize } from '@vee-validate/i18n';
 
 export default {
   install(app) {

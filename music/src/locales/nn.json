@@ -1,0 +1,84 @@
+{
+  "about": {
+    "body": "Dette er sida om Music"
+  },
+  "auth": {
+    "login": "Logg inn",
+    "logout": "Logg ut",
+    "register": "Ny brukar",
+    "youraccount": "Di konto"
+  },
+  "comment": {
+    "added": "Kommentar lagt til!",
+    "being-submittet": "Venlegst vent! Oppdaterer kommentar."
+  },
+  "composition": {
+    "enter-genre": "Sjanger",
+    "enter-song-title": "Tittel",
+    "genre": "Sjanger",
+    "go-back": "Attende",
+    "song-title": "Songtittel",
+    "submit": "Lagre",
+    "success": "Suksess!",
+    "updating-song-info": "Venlegst vent! Oppdaterer song."
+  },
+  "country": {
+    "antarctica": "Antarktis",
+    "germany": "Tyskland",
+    "mexico": "Mexico",
+    "norway": "Noreg",
+    "usa": "USA"
+  },
+  "default": {
+    "error-message": "Det oppsto ein uventa feil. Venlegst prøv att seinare"
+  },
+  "header": {
+    "about": "Om",
+    "manage": "Rediger"
+  },
+  "home": {
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.             Phasellus et dolor mollis, congue augue non, venenatis elit.             Nunc justo eros, suscipit ac aliquet imperdiet, venenatis et             sapien. Duis sed magna pulvinar, fringilla lorem eget,             ullamcorper urna.",
+    "listen": "Lytt til kul musikk!",
+    "songs": "Songar"
+  },
+  "loginform": {
+    "invalid-loggin-datails": "Feil e-post eller passord",
+    "logging-in": "Venlegst vent! Du blir logga inn.",
+    "submit": "Logg inn",
+    "success-loggin-message": "Suksess! Du er nå logga inn."
+  },
+  "manage": {
+    "confirm-unsaved": "Du hev endringar som ikkje er lagra. Er du sikker på at du vil forlate sida?",
+    "my-songs": "Mine songar"
+  },
+  "register": {
+    "TOS": "lisens",
+    "accept": "Eg godtar Musics {0}"
+  },
+  "registerform": {
+    "registering": "Venlegst vent! Bruker opprettast.",
+    "submit": "Registrer",
+    "success-registering-message": "Suksess! Brukaren er oppretta."
+  },
+  "song": {
+    "comment-count": "Ingen kommentarar | 1 komentar | {count} Komentarar",
+    "comment_input": "Skriv din kommentar...",
+    "sort-latest": "Nyeste",
+    "sort-oldest": "Eldste",
+    "submit": "Lagre",
+    "uploaded-by": "Lasta opp av"
+  },
+  "upload": {
+    "card-title": "Last opp",
+    "drop-files-here": "Slepp filar her"
+  },
+  "user": {
+    "age": "Alder",
+    "confirm-password": "Bekreft passord",
+    "country": "Land",
+    "email": "E-post",
+    "name": "Namn",
+    "password": "Passord",
+    "phone": "Telefon"
+  }
+}

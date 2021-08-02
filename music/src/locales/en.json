@@ -1,0 +1,83 @@
+{
+  "about": {
+    "body": "This is an about page"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "youraccount": "Your Account"
+  },
+  "comment": {
+    "added": "Comment added!",
+    "being-submittet": "Please wait! Your comment is being submitted."
+  },
+  "composition": {
+    "enter-genre": "Enter Genre",
+    "enter-song-title": "Enter Song Title",
+    "genre": "Genre",
+    "go-back": "Go Back",
+    "song-title": "Song Title",
+    "submit": "Submit",
+    "success": "Success!",
+    "updating-song-info": "Please wait! Updating song info."
+  },
+  "country": {
+    "antarctica": "Antarctica",
+    "germany": "Germany",
+    "mexico": "Mexico",
+    "norway": "Norway",
+    "usa": "USA"
+  },
+  "default": {
+    "error-message": "An unexpected error occured. Please try again later"
+  },
+  "header": {
+    "about": "About",
+    "manage": "Manage"
+  },
+  "home": {
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.             Phasellus et dolor mollis, congue augue non, venenatis elit.             Nunc justo eros, suscipit ac aliquet imperdiet, venenatis et             sapien. Duis sed magna pulvinar, fringilla lorem eget,             ullamcorper urna.",
+    "listen": "Listen to Great Music!",
+    "songs": "Songs"
+  },
+  "loginform": {
+    "invalid-loggin-datails": "Invalid login details.",
+    "logging-in": "Please wait! Your are being logged in.",
+    "submit": "Log in",
+    "success-loggin-message": "Success! Your are now logged in."
+  },
+  "manage": {
+    "confirm-unsaved": "You have unsaved changes. Are you sure you want to leave?",
+    "my-songs": "My Songs"
+  },
+  "register": {
+    "TOS": "Terms of Service",
+    "accept": "I accept Music's {0}"
+  },
+  "registerform": {
+    "registering": "Please wait! Your account is being created.",
+    "submit": "Submit",
+    "success-registering-message": "Success! Your account has been created."
+  },
+  "song": {
+    "comment-count": "No comments | 1 Comment | {count} Comments",
+    "comment_input": "Your comment here...",
+    "sort-latest": "Latest",
+    "sort-oldest": "Oldest",
+    "uploaded-by": "Uploaded by"
+  },
+  "upload": {
+    "card-title": "Upload",
+    "drop-files-here": "Drop your files here"
+  },
+  "user": {
+    "age": "Age",
+    "confirm-password": "Confirm Password",
+    "country": "Country",
+    "email": "Email",
+    "name": "Name",
+    "password": "Password",
+    "phone": "Phone"
+  }
+}

@@ -15,6 +15,7 @@
           <!-- Song Info -->
           <div class="text-3xl font-bold">{{ song.modifiedName }}</div>
           <div>{{ song.genre }}</div>
+          <div class="sonf-price">{{ $n(1, 'currency') }}</div>
         </div>
       </div>
     </section>
@@ -23,7 +24,9 @@
       <div class="bg-white rounded border border-gray-200 relative flex flex-col">
         <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
           <!-- Comment Count -->
-          <span class="card-title">Comments ({{ song.comment_count }})</span>
+          <span class="card-title">
+            {{ $tc('song.comment-count', song.comment_count, { count: song.comment_count }) }}
+          </span>
           <i class="fa fa-comments float-right text-green-400 text-2xl"></i>
         </div>
         <div class="p-6">
@@ -35,19 +38,19 @@
             <VeeField as="textarea" name="comment"
                       class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
                        transition duration-500 focus:outline-none focus:border-black rounded mb-4"
-                      placeholder="Your comment here..."></VeeField>
+                      v-bind:placeholder="$t('song.comment_input')" ></VeeField>
             <ErrorMessage class="text-red-600" name="comment"/>
             <button type="submit" class="py-1.5 px-3 rounded text-white bg-green-600 block"
                     :disabled="comment_in_submission">
-              Submit
+              {{ $t('song.submit') }}
             </button>
           </VeeForm>
           <!-- Sort Comments -->
           <select v-model="sort"
                   class="block mt-4 py-1.5 px-3 text-gray-800 border border-gray-300 transition
           duration-500 focus:outline-none focus:border-black rounded">
-            <option value="1">Latest</option>
-            <option value="2">Oldest</option>
+            <option value="1">{{ $t('song.sort-latest') }}</option>
+            <option value="2">{{ $t('song.sort-oldest') }}</option>
           </select>
         </div>
       </div>
@@ -83,7 +86,7 @@ export default {
       comment_in_submission: false,
       comment_show_alert: false,
       comment_alert_variant: 'bg-blue-500',
-      comment_alert_message: 'Please wait! Your comment is being submitted.',
+      comment_alert_message: this.$i18n.t('comment.submittet'),
       sort: '1',
     };
   },
@@ -118,7 +121,7 @@ export default {
       this.comment_in_submission = true;
       this.comment_show_alert = true;
       this.comment_alert_variant = 'bg-blue-500';
-      this.comment_alert_message = 'Please wait! Your comment is being submitted.';
+      this.comment_alert_message = this.$i18n.t('comment.submittet');
       const comment = {
         content: values.comment,
         datePosted: new Date().toString(),
@@ -136,7 +139,7 @@ export default {
 
         this.comment_in_submission = false;
         this.comment_alert_variant = 'bg-green-500';
-        this.comment_alert_message = 'Comment added!';
+        this.comment_alert_message = this.$i18n.t('comment.added');
         this.getComments();
         resetForm();
       } catch (e) {
@@ -145,7 +148,7 @@ export default {
         this.comment_alert_variant = 'bg-red-500';
         this.comment_alert_message = e.message
           ? e.message
-          : 'An unexpected error occured. Please try again later';
+          : this.$i18n.t('default.error-message');
       }
     },
     async getComments() {

@@ -19,7 +19,8 @@
         <div class="absolute left-0 right-0 text-lg text-center mx-auto player-song-info"
              v-if="currentSong.modifiedName">
           <span class="song-title">{{ currentSong.modifiedName }}</span>
-          <span class="song-artist"> - (Uploaded by {{ currentSong.displayName }})</span>
+          <span class="song-artist"> - ({{ $t('song.uploaded-by') }}
+            {{ currentSong.displayName }})</span>
         </div>
         <!-- Scrub Container  -->
         <span class="block w-full h-2 rounded m-1 mt-2 bg-gray-200 relative cursor-pointer">

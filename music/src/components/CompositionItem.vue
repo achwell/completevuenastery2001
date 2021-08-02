@@ -19,30 +19,30 @@
       <VeeForm :validation-schema="schema" :initial-values="song"
                @submit="edit">
         <div class="mb-3">
-          <label class="inline-block mb-2">Song Title</label>
+          <label class="inline-block mb-2">{{ $t('composition.song-title') }}</label>
           <VeeField type="text" name="modifiedName"
                     class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
                         transition duration-500 focus:outline-none focus:border-black rounded"
-                    placeholder="Enter Song Title"
+                    v-bind:placeholder="$t('composition.enter-song-title')"
                     @input="updateUnsavedFlag(true)"/>
           <ErrorMessage class="text-red-600" name="modifiedName"/>
         </div>
         <div class="mb-3">
-          <label class="inline-block mb-2">Genre</label>
+          <label class="inline-block mb-2">{{ $t('composition.genre') }}</label>
           <VeeField type="text" name="genre"
                     class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300
               transition duration-500 focus:outline-none focus:border-black rounded"
-                    placeholder="Enter Genre"
+                    v-bind:placeholder="$t('composition.enter-genre')"
                     @input="updateUnsavedFlag(true)"/>
           <ErrorMessage class="text-red-600" name="genre"/>
         </div>
         <button type="submit" class="py-1.5 px-3 rounded text-white bg-green-600"
                 :disabled="in_submission">
-          Submit
+          {{ $t('composition.submit') }}
         </button>
         <button type="button" class="py-1.5 px-3 rounded text-white bg-gray-600"
                 :disabled="in_submission" @click.prevent="showForm = false">
-          Go Back
+          {{ $t('composition.go-back') }}
         </button>
       </VeeForm>
     </div>
@@ -86,7 +86,7 @@ export default {
       in_submission: false,
       show_alert: false,
       alert_variant: 'bg-blue-500',
-      alert_message: 'Please wait! Updating song info.',
+      alert_message: this.$i18n.t('composition.updating-song-info'),
     };
   },
   methods: {
@@ -94,7 +94,7 @@ export default {
       this.in_submission = true;
       this.show_alert = true;
       this.alert_variant = 'bg-blue-500';
-      this.alert_message = 'Please wait! Updating song info.';
+      this.alert_message = this.$i18n.t('composition.updating-song-info');
 
       try {
         await songsCollection.doc(this.song.docID).update(values);
@@ -104,7 +104,7 @@ export default {
         this.alert_variant = 'bg-red-500';
         this.alert_message = e.message
           ? e.message
-          : 'An unexpected error occured. Please try again later';
+          : this.$i18n.t('default.error-message');
         return;
       }
 
@@ -113,7 +113,7 @@ export default {
 
       this.in_submission = false;
       this.alert_variant = 'bg-green-500';
-      this.alert_message = 'Success!';
+      this.alert_message = this.$i18n.t('composition.success');
     },
     async deleteSong() {
       const storageRef = storage.ref();
