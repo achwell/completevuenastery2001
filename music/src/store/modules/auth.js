@@ -1,6 +1,7 @@
 import { auth, usersCollection } from '@/includes/firebase';
 
 export default {
+  // namespaced: true,
   state: {
     authModalShow: false,
     userLoggedIn: false,
@@ -13,9 +14,6 @@ export default {
       state.userLoggedIn = !state.userLoggedIn;
     },
   },
-  getters: {
-    authModalShow: (state) => state.authModalShow,
-  },
   actions: {
     async register({ commit }, payload) {
       const {
@@ -24,27 +22,35 @@ export default {
         tos,
         ...userObj
       } = payload;
-      const userCredentials = await auth.createUserWithEmailAndPassword(payload.email, password);
-      await usersCollection.doc(userCredentials.user.uid).set(userObj);
+      const userCred = await auth.createUserWithEmailAndPassword(payload.email, password);
+      await usersCollection.doc(userCred.user.uid).set(userObj);
 
-      await userCredentials.user.updateProfile({
+      await userCred.user.updateProfile({
         displayName: payload.name,
       });
+
       commit('toggleAuth');
     },
     async login({ commit }, payload) {
       await auth.signInWithEmailAndPassword(payload.email, payload.password);
+
       commit('toggleAuth');
     },
     init_login({ commit }) {
       const user = auth.currentUser;
+
       if (user) {
         commit('toggleAuth');
       }
     },
     async signout({ commit }) {
       await auth.signOut();
+
       commit('toggleAuth');
+
+      // if (payload.route.meta.requiresAuth) {
+      //   payload.router.push({ name: 'home' });
+      // }
     },
   },
 };
