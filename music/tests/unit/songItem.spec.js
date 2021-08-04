@@ -21,7 +21,7 @@ describe('SongItem.vue', () => {
   });
   test('renders song.docID in id attribute', () => {
     const song = {
-      docId: 'abc',
+      docID: 'abc',
     };
     const wrapper = shallowMount(SongItem, {
       props: {
@@ -33,8 +33,8 @@ describe('SongItem.vue', () => {
         },
       },
     });
-    expect(wrapper.attributes('id')).toBe(`song-id-${song.docId}`);
-    expect(wrapper.classes()).toContain(`song-id-${song.docId}`);
+    expect(wrapper.attributes('id')).toBe(`song-id-${song.docID}`);
+    expect(wrapper.classes()).toContain(`song-id-${song.docID}`);
     expect(wrapper.classes()).toContain('example');
   });
 });
